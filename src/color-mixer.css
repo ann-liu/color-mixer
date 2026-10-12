@@ -1,0 +1,234 @@
+:host {
+  display: block;
+  container-type: inline-size;
+  width: 100%;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.color-mixer {
+  --column-min-width: calc(9.5ch + 2rem);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: monospace;
+  font-size: clamp(0.5rem, 0.35rem + 1.35cqi, 1.75rem);
+}
+
+.main-color-container,
+.mix-inputs {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+.main-color-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+@container (width < 450px) {
+  .main-color-container {
+    flex-direction: column;
+  }
+}
+
+.add-mix-btn {
+  padding-block: 0.5rem;
+  padding-inline-end: 0.75rem;
+}
+
+.steps-container {
+  --line-width: 2px;
+  --thumb-size: clamp(1rem, 0.5rem + 1cqi, 1.5rem);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+}
+
+.steps-container:focus-within {
+  border-color: currentColor;
+}
+
+.steps {
+  flex: 1;
+  margin: 0;
+  outline: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.steps::-webkit-slider-runnable-track {
+  height: var(--line-width);
+  border-radius: 5px;
+  background: var(--color);
+}
+.steps::-moz-range-track {
+  height: var(--line-width);
+  border-radius: 5px;
+  background: var(--color);
+}
+
+.steps::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: border-box;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: var(--line-width) solid var(--color);
+  border-radius: 50%;
+  background: var(--background-color);
+  margin-top: calc((var(--line-width) - var(--thumb-size)) / 2);
+}
+.steps::-moz-range-thumb {
+  box-sizing: border-box;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: var(--line-width) solid var(--color);
+  border-radius: 50%;
+  background: var(--background-color);
+}
+
+.mix-colors-container {
+  position: relative;
+  flex: 8;
+  display: flex;
+  min-height: 0;
+}
+
+.mix-color-swatches {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
+.mix-color-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: var(--column-min-width);
+}
+
+.column-probe {
+  position: absolute;
+  width: var(--column-min-width);
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.swatch,
+.mix-inputs {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.slide-control {
+  position: absolute;
+  inset-block-start: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  color: #fff;
+  background-color: transparent;
+  mix-blend-mode: difference;
+}
+.slide-control:hover {
+  outline: 0;
+  transform: scale(1);
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: contrast(200%);
+}
+.prev-btn {
+  inset-inline-start: 0;
+}
+.next-btn {
+  inset-inline-end: 0;
+}
+
+.swatch {
+  cursor: copy;
+  outline: 0;
+}
+
+.swatch:is(:hover, :focus-visible),
+.mix-inputs:hover {
+  border-color: currentColor;
+}
+
+.swatch:active,
+.swatch.active {
+  transform: scale(0.98);
+}
+
+.swatch-text {
+  opacity: 0;
+}
+.swatch:is(:hover, :focus-visible) .swatch-text {
+  opacity: 1;
+}
+
+.mix-inputs {
+  position: relative;
+}
+
+.remove-mix-btn {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  opacity: 0;
+}
+.mix-inputs:is(:hover, :focus-within) .remove-mix-btn {
+  opacity: 1;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  line-height: 1;
+  color: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: currentColor;
+}
+
+.icon-btn {
+  padding: 0;
+  border-width: 0;
+}
+
+button:active,
+.icon-btn:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 1px solid currentColor;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon-btn {
+    transition: transform 300ms ease-out;
+  }
+}

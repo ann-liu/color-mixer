@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.color-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem;
+}
+
+.color-inputs:focus-within {
+  outline: 1px solid currentColor;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  font: inherit;
+}
+
+.text {
+  width: 7.5ch;
+  color: inherit;
+  background: transparent;
+}
+
+.text:focus,
+.text:focus-visible {
+  outline: none;
+}
+
+.picker {
+  --rainbow: linear-gradient(
+    90deg,
+    #ff7f7f 14%,
+    #ffb87f 28%,
+    #f2ff7f 42%,
+    #7fff88 56%,
+    #7fdfff 70%,
+    #7f9fff 84%,
+    #b47fff 100%
+  );
+
+  padding: 0;
+  width: 2ch;
+  height: 2ch;
+  border-radius: 50%;
+  filter: blur(3px);
+  cursor: pointer;
+  background: var(--rainbow);
+}
+
+.picker::-webkit-color-swatch {
+  background: var(--rainbow);
+}
+.picker::-moz-color-swatch {
+  background: var(--rainbow);
+  overflow: visible;
+}
