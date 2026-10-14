@@ -1,4 +1,4 @@
-# Color Mixer
+# [Color Mixer](https://color-mixer.annliu.dev/)
 
 `<color-mixer>` blends one main color with other colors at evenly spaced steps. Each blend appears as a swatch that copies the hex value to the clipboard on a mouse click or enter/space keydown. The number of mix colors and steps (1-8) are customizable through the UI.
 
